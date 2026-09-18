@@ -1,43 +1,43 @@
-from typing import List
+"""
+Ensures that if anything crashes during the live demo, the API returns a
+clean JSON error instead of a raw HTML traceback (or a hung connection).
+Register with `register_error_handlers(app)` from main.py.
+"""
+import logging
 
-from fastapi import APIRouter, Query
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 
-from src.controllers.code_controller import handle_code
-from src.controllers.history_controller import handle_get_history
-from src.controllers.review_controller import handle_get_review_queue, handle_submit_review
-from src.controllers.sync_controller import handle_sync
-from src.models.request import CodeRequest, ReviewSubmission
-from src.models.response import (
-    CodeResponse,
-    HistoryEntry,
-    ReviewActionResult,
-    ReviewItem,
-    SyncResponse,
-)
-
-router = APIRouter(prefix="/v1")
+logger = logging.getLogger("codebridge")
 
 
-@router.post("/code", response_model=CodeResponse, summary="Translate a diagnosis into ICD-11 + NAMASTE codes")
-def post_code(payload: CodeRequest) -> CodeResponse:
-    return handle_code(payload)
+def register_error_handlers(app: FastAPI) -> None:
+    @app.exception_handler(RequestValidationError)
+    async def validation_exception_handler(request: Request, exc: RequestValidationError):
+        return JSONResponse(
+            status_code=422,
+            content={
+                "error": "validation_error",
+                "message": "Request payload failed validation.",
+                "details": exc.errors(),
+            },
+        )
 
+    @app.exception_handler(HTTPException)
+    async def http_exception_handler(request: Request, exc: HTTPException):
+        return JSONResponse(
+            status_code=exc.status_code,
+            content={"error": "http_error", "message": exc.detail},
+        )
 
-@router.get("/history", response_model=List[HistoryEntry], summary="Get past translations")
-def get_history(limit: int = Query(default=50, ge=1, le=500)) -> List[HistoryEntry]:
-    return handle_get_history(limit=limit)
-
-
-@router.get("/review", response_model=List[ReviewItem], summary="Get matches below the confidence threshold")
-def get_review_queue() -> List[ReviewItem]:
-    return handle_get_review_queue()
-
-
-@router.post("/review", response_model=ReviewActionResult, summary="Confirm or correct a low-confidence match")
-def post_review(payload: ReviewSubmission) -> ReviewActionResult:
-    return handle_submit_review(payload)
-
-
-@router.post("/sync", response_model=SyncResponse, summary="Simulate a Ministry of Ayush code update")
-def post_sync() -> SyncResponse:
-    return handle_sync()
+    @app.exception_handler(Exception)
+    async def unhandled_exception_handler(request: Request, exc: Exception):
+        logger.exception("Unhandled exception on %s %s", request.method, request.url)
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": "internal_server_error",
+                "message": "Something went wrong. This has been logged.",
+            },
+        )
