@@ -1,12 +1,28 @@
 # Virtual Environments
-myenv/
+.venv/
 venv/
 env/
+ENV/
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-
-# Environment Variables
+# Sensitive Information
 .env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Project specific (Optional)
+# If you generate any temporary test files or logs, ignore them here
+test_engine.py
+.gitignore
