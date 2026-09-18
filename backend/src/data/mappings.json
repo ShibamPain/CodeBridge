@@ -1,0 +1,112 @@
+{
+  "mappings": [
+    {
+      "namaste_code": "DB-1",
+      "namaste_term": "mandAgniH/ agnisAda",
+      "namaste_term_devanagari": "मन्दाग्निः/ अग्निसाद",
+      "namaste_prefix": "DB",
+      "icd11_code": "SS13",
+      "icd11_title": "Subdued digestive power pattern (TM2)",
+      "equivalence": "relatedto"
+    },
+    {
+      "namaste_code": "EB-10.18",
+      "namaste_term": "purIShaSUlaH",
+      "namaste_term_devanagari": "पुरीषशूलः",
+      "namaste_prefix": "EB",
+      "icd11_code": "DD93.2",
+      "icd11_title": "Infant dyschezia",
+      "equivalence": "relatedto"
+    },
+    {
+      "namaste_code": "EC-7",
+      "namaste_term": "aruciH",
+      "namaste_term_devanagari": "अरुचिः",
+      "namaste_prefix": "EC",
+      "icd11_code": "6B80",
+      "icd11_title": "Anorexia Nervosa",
+      "equivalence": "relatedto"
+    },
+    {
+      "namaste_code": "ED-14",
+      "namaste_term": "SItapittam",
+      "namaste_term_devanagari": "शीतपित्तम्",
+      "namaste_prefix": "ED",
+      "icd11_code": "2A21.10",
+      "icd11_title": "Urticaria pigmentosa",
+      "equivalence": "relatedto"
+    },
+    {
+      "namaste_code": "SK00 (F)",
+      "namaste_term": "SirorogaH/SiraHSUla/SirastApa/SiroBitApa",
+      "namaste_term_devanagari": "शिरोरोगः/शिरःशूल/शिरस्ताप/शिरोभिताप",
+      "namaste_prefix": "SK",
+      "icd11_code": "SK00",
+      "icd11_title": "Cephalalgia disorder (TM2)",
+      "equivalence": "equivalent"
+    },
+    {
+      "namaste_code": "SL00 (GF-15)",
+      "namaste_term": "galArbudaH",
+      "namaste_term_devanagari": "गलार्बुदः",
+      "namaste_prefix": "SL",
+      "icd11_code": "SL00",
+      "icd11_title": "Throat tumour disorder (TM2)",
+      "equivalence": "equivalent"
+    },
+    {
+      "namaste_code": "SM00 (GF-14)",
+      "namaste_term": "apacI",
+      "namaste_term_devanagari": "अपची",
+      "namaste_prefix": "SM",
+      "icd11_code": "SM00",
+      "icd11_title": "Lymphadenopathy disorder (TM2)",
+      "equivalence": "equivalent"
+    },
+    {
+      "namaste_code": "SN00(ABB-31)",
+      "namaste_term": "meDhrapAkaH (kEvalapitta)",
+      "namaste_term_devanagari": "मेढ्रपाकः (केवलपित्त)",
+      "namaste_prefix": "SN",
+      "icd11_code": "SN00",
+      "icd11_title": "Balanitis disorder (TM2)",
+      "equivalence": "relatedto"
+    },
+    {
+      "namaste_code": "SP00(AAC-6)",
+      "namaste_term": "asthiSoShaH",
+      "namaste_term_devanagari": "अस्थिशोषः",
+      "namaste_prefix": "SP",
+      "icd11_code": "SP00",
+      "icd11_title": "Osteoporosis disorder (TM2)",
+      "equivalence": "relatedto"
+    },
+    {
+      "namaste_code": "SQ00 (AAB-1)",
+      "namaste_term": "atipralApaH (kEvalavAta)",
+      "namaste_term_devanagari": "अतिप्रलापः (केवलवात)",
+      "namaste_prefix": "SQ",
+      "icd11_code": "SQ00",
+      "icd11_title": "Delirium disorder (TM2)",
+      "equivalence": "equivalent"
+    },
+    {
+      "namaste_code": "SR00 (MD-12)",
+      "namaste_term": "kumAraSoShaH",
+      "namaste_term_devanagari": "कुमारशोषः",
+      "namaste_prefix": "SR",
+      "icd11_code": "SR00",
+      "icd11_title": "Marasmus disorder (TM2)",
+      "equivalence": "equivalent"
+    },
+    {
+      "namaste_code": "SS21 (RD-5)",
+      "namaste_term": "jRumBA-vegAvarodhaH",
+      "namaste_term_devanagari": "जृम्भा-वेगावरोधः",
+      "namaste_prefix": "SS",
+      "icd11_code": "SS21",
+      "icd11_title": "Suppression of yawning pattern (TM2)",
+      "equivalence": "equivalent"
+    }
+  ]
+}
