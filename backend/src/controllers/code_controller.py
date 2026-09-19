@@ -23,7 +23,7 @@ from src.core.constants import (
     STATUS_AUTO_CODED,
     STATUS_NEEDS_REVIEW,
 )
-from src.data.store import history, review_queue
+from src.data.store import add_history_entry, add_review_item
 from src.models.request import CodeRequest
 from src.models.response import CodeResponse
 
@@ -143,8 +143,8 @@ def handle_code(payload: CodeRequest) -> CodeResponse:
 
     result = CodeResponse(**result_dict)
 
-    # Log to in-memory history so GET /v1/history has something to show.
-    history.append(
+    # Log to persistent history so GET /v1/history has something to show.
+    add_history_entry(
         {
             "id": str(uuid.uuid4()),
             "query_text": payload.text,
@@ -156,11 +156,13 @@ def handle_code(payload: CodeRequest) -> CodeResponse:
     # If below threshold, drop into the review queue too.
     if result.status != STATUS_AUTO_CODED:
         review_id = str(uuid.uuid4())
-        review_queue[review_id] = {
-            "review_id": review_id,
-            "query_text": payload.text,
-            "suggested": result.model_dump(),
-            "created_at": datetime.now(timezone.utc).isoformat(),
-        }
+        add_review_item(
+            {
+                "review_id": review_id,
+                "query_text": payload.text,
+                "suggested": result.model_dump(),
+                "created_at": datetime.now(timezone.utc).isoformat(),
+            }
+        )
 
     return result

@@ -10,6 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.core.config import settings
+from src.data.store import init_db
 from src.middleware.error_handler import register_error_handlers
 from src.routes.api_routes import router as api_router
 
@@ -18,6 +19,8 @@ app = FastAPI(
     description="Translation layer between ICD-11 and NAMASTE/TM2 codes for AYUSH hospitals.",
     version="0.1.0",
 )
+
+init_db()
 
 app.add_middleware(
     CORSMiddleware,
